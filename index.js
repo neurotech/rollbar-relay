@@ -16,62 +16,32 @@ rollbar.handleUncaughtExceptions(token, { exitOnUncaughtException: true });
 var relay = {};
 
 relay.critical = (event, custom) => {
-  var payload = {
-    level: 'critical'
-  };
-
-  if (custom) {
-    payload.custom = custom;
-  }
-
+  var payload = { level: 'critical' };
+  if (custom) { payload.custom = custom; }
   rollbar.handleErrorWithPayloadData(event, payload);
 };
 
 relay.error = (event, custom) => {
-  var payload = {
-    level: 'error'
-  };
-
-  if (custom) {
-    payload.custom = custom;
-  }
-
+  var payload = { level: 'error' };
+  if (custom) { payload.custom = custom; }
   rollbar.handleErrorWithPayloadData(event, payload);
 };
 
 relay.warning = (event, custom) => {
-  var payload = {
-    level: 'warning'
-  };
-
-  if (custom) {
-    payload.custom = custom;
-  }
-
+  var payload = { level: 'warning' };
+  if (custom) { payload.custom = custom; }
   rollbar.reportMessageWithPayloadData(event, payload);
 };
 
 relay.info = (event, custom) => {
-  var payload = {
-    level: 'info'
-  };
-
-  if (custom) {
-    payload.custom = custom;
-  }
-
+  var payload = { level: 'info' };
+  if (custom) { payload.custom = custom; }
   rollbar.reportMessageWithPayloadData(event, payload);
 };
 
 relay.debug = (event, custom) => {
-  var payload = {
-    level: 'debug'
-  };
-
-  if (custom) {
-    payload.custom = custom;
-  }
-
+  var payload = { level: 'debug' };
+  if (custom) { payload.custom = custom; }
   rollbar.reportMessageWithPayloadData(event, payload);
 };
 
