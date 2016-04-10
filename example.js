@@ -34,7 +34,7 @@ var custom = () => {
 };
 
 setTimeout(relay.critical(criticalEvent, custom()), 500);
-setTimeout(relay.error(errorEvent, custom()), 1000);
+setTimeout(relay.error(errorEvent), 1000);
 setTimeout(relay.warning(warningEvent, custom()), 1500);
-setTimeout(relay.info(infoEvent, custom()), 2000);
-setTimeout(relay.debug(debugEvent, custom()), 2500);
+setTimeout(relay.info(infoEvent), 2000);
+setTimeout(relay.debug(debugEvent), 2500);
