@@ -1,7 +1,5 @@
 # :satellite: rollbar-relay
 
-A simple wrapper for Rollbar events.
-
 `rollbar-relay` provides a simple API to relay your application's logging events to [https://rollbar.com/](Rollbar).
 
 ## Configuration
@@ -12,22 +10,22 @@ This token is listed in your Rollbar project's settings under *Project Access To
 
 ## Methods
 
-### `relay.critical()`
+### `critical(event, [custom])`
 
 Placeholder
 
-### `relay.error()`
+### `error(event, [custom])`
 
 Placeholder
 
-### `relay.warning()`
+### `warning(event, [custom])`
 
 Placeholder
 
-### `relay.info()`
+### `info(event, [custom])`
 
 Placeholder
 
-### `relay.debug()`
+### `debug(event, [custom])`
 
 Placeholder
