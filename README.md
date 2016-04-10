@@ -127,6 +127,6 @@ relay.debug(event, custom)
 
 ## TODO
 
- 1. Docs (Update README, methods section - descriptions)
+ 1. Docs (Update README, methods section - descriptions & argument explanations)
  2. Add support for (optional) request object (https://github.com/rollbar/node_rollbar#the-request-object)
  3. Add support for logging to console vs. silent based on environment variable
