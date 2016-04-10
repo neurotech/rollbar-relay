@@ -1,6 +1,6 @@
 # :satellite: rollbar-relay
 
-`rollbar-relay` provides a simple API to relay your application's logging events to [https://rollbar.com/](Rollbar).
+`rollbar-relay` provides a simple API to relay your application's logging events to [Rollbar](https://rollbar.com/).
 
 ## Configuration
 
