@@ -1,6 +1,20 @@
 # :satellite: rollbar-relay
 
-`rollbar-relay` provides a simple API to relay your application's logging events to [Rollbar](https://rollbar.com/).
+`rollbar-relay` provides a small set of simple methods that you can use to easily send your application's exception and logging events to [Rollbar](https://rollbar.com/).
+
+## Installation
+
+Install with `npm` and save as a dependency:
+
+```shell
+npm install rollbar-relay --save
+```
+
+Require the module in your application:
+
+```javascript
+const relay = require('rollbar-relay');
+```
 
 ## Configuration
 
@@ -12,13 +26,13 @@ This token is listed in your Rollbar project's settings under *Project Access To
 
 ### `critical(event, [custom], [request])`
 
-Description placeholder
+POSTs an event to Rollbar with a severity level of `critical`.
 
 #### Arguments
 
- - `event` - Explanation
- - `custom` - *(Optional)* Explanation
- - `request` - *(Optional)* Explanation
+ - `event` - The specific `Error` event that has occurred.
+ - `custom` - *(Optional)* An `Object` containing custom data associated with the event.
+ - `request` - *(Optional)* See: [node_rollbar's docs](https://github.com/rollbar/node_rollbar#the-request-object) regarding 'The Request Object'.
 
 #### Example
 
@@ -27,18 +41,19 @@ var event = new Error('CRITICAL ERROR!');
 var custom = {
   customErrorData: 'Everything is on fire.'
 };
+
 relay.critical(event, custom)
 ```
 
 ### `error(event, [custom], [request])`
 
-Description placeholder
+POSTs an event to Rollbar with a severity level of `error`.
 
 #### Arguments
 
- - `event` - Explanation
- - `custom` - *(Optional)* Explanation
- - `request` - *(Optional)* Explanation
+ - `event` - The specific `Error` event that has occurred.
+ - `custom` - *(Optional)* An `Object` containing custom data associated with the event.
+ - `request` - *(Optional)* See: [node_rollbar's docs](https://github.com/rollbar/node_rollbar#the-request-object) regarding 'The Request Object'.
 
 #### Example
 
@@ -47,18 +62,19 @@ var event = new Error('An error has occurred in your application.');
 var custom = {
   additionalData: 'String of useful information.'
 };
+
 relay.error(event, custom)
 ```
 
 ### `warning(event, [custom], [request])`
 
-Description placeholder
+POSTs an event to Rollbar with a severity level of `warning`.
 
 #### Arguments
 
- - `event` - Explanation
- - `custom` - *(Optional)* Explanation
- - `request` - *(Optional)* Explanation
+ - `event` - A `String` representing some sort of information related to activity in your application.
+ - `custom` - *(Optional)* An `Object` containing custom data associated with the event.
+ - `request` - *(Optional)* See: [node_rollbar's docs](https://github.com/rollbar/node_rollbar#the-request-object) regarding 'The Request Object'.
 
 #### Example
 
@@ -70,28 +86,31 @@ var custom = {
 };
 var request = {
   headers: {
-    header: 'example'
+    host: 'localhost',
+    Authorization: 'Basic username:accessKey',
+    Server: 'rollbar-relay Example Application'
   },
   protocol: 'https',
-  url: '/index.html?foo=bar',
+  url: 'https://locahost/index.html?foo=bar',
   method: 'GET',
   body: 'body',
   route: {
     path: 'home/index'
   }
 };
+
 relay.warning(event, custom, request)
 ```
 
 ### `info(event, [custom], [request])`
 
-Description placeholder
+POSTs an event to Rollbar with a severity level of `info`.
 
 #### Arguments
 
- - `event` - Explanation
- - `custom` - *(Optional)* Explanation
- - `request` - *(Optional)* Explanation
+ - `event` - A `String` representing some sort of information related to activity in your application.
+ - `custom` - *(Optional)* An `Object` containing custom data associated with the event.
+ - `request` - *(Optional)* See: [node_rollbar's docs](https://github.com/rollbar/node_rollbar#the-request-object) regarding 'The Request Object'.
 
 #### Example
 
@@ -100,18 +119,19 @@ var event = `Refreshed data at: ${new Date()}`;
 var custom = {
   refreshSize: 82917346
 };
+
 relay.info(event, custom)
 ```
 
 ### `debug(event, [custom], [request])`
 
-Description placeholder
+POSTs an event to Rollbar with a severity level of `debug`.
 
 #### Arguments
 
- - `event` - Explanation
- - `custom` - *(Optional)* Explanation
- - `request` - *(Optional)* Explanation
+ - `event` - A `String` representing some sort of information related to activity in your application.
+ - `custom` - *(Optional)* An `Object` containing custom data associated with the event.
+ - `request` - *(Optional)* See: [node_rollbar's docs](https://github.com/rollbar/node_rollbar#the-request-object) regarding 'The Request Object'.
 
 #### Example
 
@@ -120,13 +140,6 @@ var event = 'Sync with OtherService returned a status code of 999.';
 var custom = {
   debugCode: 999
 };
+
 relay.debug(event, custom)
 ```
-
----
-
-## TODO
-
- 1. Docs (Update README, methods section - descriptions & argument explanations)
- 2. Add support for (optional) request object (https://github.com/rollbar/node_rollbar#the-request-object)
- 3. Add support for logging to console vs. silent based on environment variable
