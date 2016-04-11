@@ -15,34 +15,68 @@ rollbar.handleUncaughtExceptions(token, { exitOnUncaughtException: true });
 
 var relay = {};
 
-relay.critical = (event, custom) => {
-  var payload = { level: 'critical' };
-  if (custom) { payload.custom = custom; }
-  rollbar.handleErrorWithPayloadData(event, payload);
+const _logger = (level, event) => {
+  switch (level) {
+    case 'critical':
+      console.error(`[${level}] ${event.stack}`);
+      break;
+
+    case 'error':
+      console.error(`[${level}] ${event.stack}`);
+      break;
+
+    case 'warning':
+      console.log(`[${level}] ${event}`);
+      break;
+
+    case 'info':
+      console.log(`[${level}] ${event}`);
+      break;
+
+    case 'debug':
+      console.log(`[${level}] ${event}`);
+      break;
+  }
 };
 
-relay.error = (event, custom) => {
-  var payload = { level: 'error' };
-  if (custom) { payload.custom = custom; }
-  rollbar.handleErrorWithPayloadData(event, payload);
+relay.critical = (event, custom, request) => {
+  var level = 'critical';
+  var payload = { level: level };
+  if (typeof custom === 'object') { payload.custom = custom; }
+  rollbar.handleErrorWithPayloadData(event, payload, request);
+  _logger(level, event);
 };
 
-relay.warning = (event, custom) => {
-  var payload = { level: 'warning' };
-  if (custom) { payload.custom = custom; }
-  rollbar.reportMessageWithPayloadData(event, payload);
+relay.error = (event, custom, request) => {
+  var level = 'error';
+  var payload = { level: level };
+  if (typeof custom === 'object') { payload.custom = custom; }
+  rollbar.handleErrorWithPayloadData(event, payload, request);
+  _logger(level, event);
 };
 
-relay.info = (event, custom) => {
-  var payload = { level: 'info' };
-  if (custom) { payload.custom = custom; }
-  rollbar.reportMessageWithPayloadData(event, payload);
+relay.warning = (event, custom, request) => {
+  var level = 'warning';
+  var payload = { level: level };
+  if (typeof custom === 'object') { payload.custom = custom; }
+  rollbar.reportMessageWithPayloadData(event, payload, request);
+  _logger(level, event);
 };
 
-relay.debug = (event, custom) => {
-  var payload = { level: 'debug' };
-  if (custom) { payload.custom = custom; }
-  rollbar.reportMessageWithPayloadData(event, payload);
+relay.info = (event, custom, request) => {
+  var level = 'info';
+  var payload = { level: level };
+  if (typeof custom === 'object') { payload.custom = custom; }
+  rollbar.reportMessageWithPayloadData(event, payload, request);
+  _logger(level, event);
+};
+
+relay.debug = (event, custom, request) => {
+  var level = 'debug';
+  var payload = { level: level };
+  if (typeof custom === 'object') { payload.custom = custom; }
+  rollbar.reportMessageWithPayloadData(event, payload, request);
+  _logger(level, event);
 };
 
 module.exports = relay;
