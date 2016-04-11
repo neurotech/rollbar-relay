@@ -25,7 +25,7 @@ const warningEvent = `rollbar-relay has encountered a WARNING event! [${_randomS
 const infoEvent = `rollbar-relay has encountered an INFORMATION event! [${_randomString()}]`;
 const debugEvent = `rollbar-relay has encountered a DEBUG event! [${_randomString()}]`;
 
-var custom = () => {
+var exampleCustom = () => {
   var payload = {
     exampleString: _randomString(),
     exampleIdNumber: _randomNumber()
@@ -33,8 +33,30 @@ var custom = () => {
   return payload;
 };
 
-setTimeout(relay.critical(criticalEvent, custom()), 500);
-setTimeout(relay.error(errorEvent), 1000);
-setTimeout(relay.warning(warningEvent, custom()), 1500);
-setTimeout(relay.info(infoEvent), 2000);
-setTimeout(relay.debug(debugEvent), 2500);
+var exampleRequest = {
+  headers: {
+    host: 'localhost',
+    Authorization: 'Basic username:accessKey',
+    Server: 'rollbar-relay Example Application'
+  },
+  protocol: 'https',
+  url: '/index.html?foo=bar',
+  method: 'GET',
+  body: 'body',
+  route: {
+    path: 'home/index'
+  }
+};
+
+relay.critical(criticalEvent, exampleCustom());
+relay.error(errorEvent, null, exampleRequest);
+relay.warning(warningEvent, exampleCustom());
+relay.info(infoEvent);
+relay.debug(debugEvent);
+
+// Handle uncaught exceptions:
+function foo () {
+  return bar();
+}
+
+foo();
