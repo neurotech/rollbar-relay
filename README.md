@@ -22,6 +22,10 @@ const relay = require('rollbar-relay');
 
 This token is listed in your Rollbar project's settings under *Project Access Tokens*.
 
+## Example
+
+`example.js` exists in this module's directory that will send some example events to your Rollbar project.
+
 ## Methods
 
 ### `critical(event, [custom], [request])`
