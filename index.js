@@ -12,7 +12,7 @@ rollbar.init(token, {
   environment: env,
   codeVersion: sha
 });
-rollbar.handleUncaughtExceptions(token, { exitOnUncaughtException: true });
+rollbar.handleUncaughtExceptionsAndRejections(token, { exitOnUncaughtException: true });
 
 var relay = {};
 
