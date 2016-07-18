@@ -1,6 +1,6 @@
 {
   "name": "rollbar-relay",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A simple wrapper for Rollbar events.",
   "main": "index.js",
   "repository": {
