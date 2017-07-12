@@ -26,7 +26,8 @@ const _logger = (level, event) => {
       break;
 
     case 'error':
-      console.error(`[${level}] [${now}] ${event.stack}`);
+      console.error('ERROR: ' + event);
+      // console.error(`[${level}] [${now}] ${event.stack}`);
       break;
 
     case 'warning':
