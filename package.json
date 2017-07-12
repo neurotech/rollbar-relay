@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/neurotech/rollbar-relay#readme",
   "dependencies": {
-    "moment": "2.13.0",
-    "rollbar": "0.6.2"
+    "moment": "2.18.1",
+    "rollbar": "2.1.0"
+  },
+  "devDependencies": {
+    "semistandard": "^11.0.0"
   }
 }
